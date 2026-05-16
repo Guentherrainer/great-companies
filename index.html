@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>What Makes Great Companies Great</title>
+  <meta name="description" content="A revelation in five truths. By Günther Rainer.">
+  <meta name="theme-color" content="#0E0D0A">
+
+  <meta property="og:title" content="What Makes Great Companies Great">
+  <meta property="og:description" content="The answer arrives in five truths. Press and hold to receive them.">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230E0D0A'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23D9FF3C'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0E0D0A;
+      --bg-elev: #15140F;
+      --bg-deep: #060604;
+      --ink: #E8E1D0;
+      --ink-soft: #C9C2B0;
+      --ink-mute: #8A8478;
+      --ink-faint: #4A453C;
+      --accent: #D9FF3C;
+      --accent-warm: #C9A961;
+      --rule: rgba(232, 225, 208, 0.08);
+
+      --serif: 'Newsreader', 'Source Serif Pro', Georgia, serif;
+      --mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+      --col: 640px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      position: relative;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 100%);
+      transition: background 2s ease;
+    }
+
+    body.holding::after {
+      background: radial-gradient(ellipse at center, transparent 18%, rgba(0,0,0,0.85) 90%);
+    }
+    body.intense-2::after {
+      background: radial-gradient(ellipse at center, transparent 12%, rgba(0,0,0,0.92) 80%);
+    }
+    body.intense-3::after {
+      background: radial-gradient(ellipse at center, transparent 8%, rgba(0,0,0,0.96) 70%);
+    }
+    body.released::after {
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+    }
+
+    .container {
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: 0 36px;
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
+
+    .stage {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .stage.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* INTRO */
+    .intro__label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      color: var(--ink-mute);
+      margin-bottom: 56px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+    }
+    .intro__label::before,
+    .intro__label::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent-warm);
+    }
+
+    .intro__title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(36px, 6.5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    .intro__title em {
+      font-style: italic;
+      color: var(--accent-warm);
+      font-weight: 300;
+    }
+
+    .intro__rule {
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin: 32px auto 32px;
+    }
+
+    .intro__subtitle {
+      font-family: var(--serif);
+      font-size: clamp(17px, 1.8vw, 20px);
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin-bottom: 48px;
+      font-weight: 300;
+      text-align: center;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .intro__subtitle em {
+      font-style: italic;
+      color: var(--accent-warm);
+    }
+
+    .intro__truths {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(20px, 4vw, 36px);
+      margin-bottom: 64px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+    }
+    .intro__truths span { position: relative; }
+    .intro__truths span:not(:last-child)::after {
+      content: '×';
+      position: absolute;
+      top: 50%;
+      right: calc(-1 * clamp(13px, 2.4vw, 22px));
+      transform: translateY(-50%);
+      color: var(--ink-faint);
+      opacity: 0.7;
+      font-size: 0.95em;
+      letter-spacing: 0;
+    }
+
+    .hold-button {
+      display: block;
+      margin: 0 auto;
+      padding: 28px 56px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease;
+      position: relative;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hold-button:hover { background: var(--accent); }
+    .hold-button.armed {
+      background: var(--accent);
+      color: var(--bg);
+      transform: scale(0.98);
+    }
+
+    .intro__warning {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.24em;
+      color: var(--ink-mute);
+      margin-top: 36px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* HOLD */
+    .hold-stage { touch-action: none; }
+
+    .hold-pulse {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(217, 255, 60, 0.04) 0%, transparent 60%);
+      opacity: 0.5;
+      z-index: 0;
+      pointer-events: none;
+      animation: holdPulse 5s ease-in-out infinite;
+    }
+    .hold-stage.intensity-1 .hold-pulse { animation-duration: 4s; }
+    .hold-stage.intensity-2 .hold-pulse {
+      animation-duration: 2.5s;
+      background: radial-gradient(ellipse at center, rgba(217, 255, 60, 0.07) 0%, transparent 60%);
+    }
+    .hold-stage.intensity-3 .hold-pulse {
+      animation-duration: 1.5s;
+      background: radial-gradient(ellipse at center, rgba(255, 100, 50, 0.08) 0%, transparent 50%);
+    }
+    @keyframes holdPulse {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.08); }
+    }
+
+    .hold-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hold-bg__word {
+      font-family: var(--serif);
+      font-size: clamp(160px, 34vw, 460px);
+      font-weight: 200;
+      color: var(--ink-faint);
+      letter-spacing: -0.05em;
+      text-transform: lowercase;
+      opacity: 0.22;
+      filter: blur(24px);
+      transition: filter 3s ease, opacity 3s ease, transform 1.2s ease;
+      white-space: nowrap;
+      font-style: italic;
+    }
+    .hold-bg__word.fading {
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .hold-stage.peaking-1 .hold-bg__word { filter: blur(14px); opacity: 0.3; }
+    .hold-stage.peaking-2 .hold-bg__word { filter: blur(8px); opacity: 0.38; }
+    .hold-stage.peaking-3 .hold-bg__word { filter: blur(5px); opacity: 0.45; }
+
+    .hold-content {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      width: 100%;
+      max-width: 520px;
+      padding: 0 32px;
+    }
+    .hold-stage.intensity-3 .hold-content {
+      animation: tremor 0.16s ease-in-out infinite;
+    }
+    @keyframes tremor {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-0.6px, 0.4px); }
+      50% { transform: translate(0.5px, -0.5px); }
+      75% { transform: translate(-0.4px, -0.6px); }
+    }
+
+    .hold-system-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.34em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+    .hold-system-label__dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: dotPulse 1.4s ease-in-out infinite;
+      box-shadow: 0 0 8px var(--accent);
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .hold-message {
+      font-family: var(--mono);
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--ink);
+      text-transform: uppercase;
+      margin-bottom: 44px;
+      min-height: 1.4em;
+      transition: opacity 0.4s ease, color 0.6s ease;
+    }
+    .hold-message.danger { color: var(--accent); }
+    .hold-message.critical {
+      color: #FF7A4D;
+      letter-spacing: 0.24em;
+    }
+
+    .progress-wrap { position: relative; margin-bottom: 20px; }
+    .progress-track {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      position: relative;
+    }
+    .progress-fill {
+      height: 1px;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.12s linear, background 0.6s ease;
+      box-shadow: 0 0 12px rgba(217, 255, 60, 0.5);
+      position: relative;
+    }
+    .hold-stage.intensity-3 .progress-fill {
+      background: #FF7A4D;
+      box-shadow: 0 0 14px rgba(255, 122, 77, 0.6);
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: -3px;
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 16px var(--accent);
+      transition: background 0.6s ease, box-shadow 0.6s ease;
+    }
+    .hold-stage.intensity-3 .progress-fill::after {
+      background: #FF7A4D;
+      box-shadow: 0 0 16px #FF7A4D;
+    }
+    .progress-percent {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      color: var(--ink-mute);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .truths {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(22px, 4vw, 42px);
+      margin-top: 40px;
+      font-family: var(--mono);
+      font-size: clamp(14px, 1.7vw, 17px);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+    }
+    .truth {
+      color: var(--ink-faint);
+      position: relative;
+      transition: color 0.6s ease, text-shadow 0.6s ease;
+    }
+    .truth:not(:last-child)::after {
+      content: '×';
+      position: absolute;
+      top: 50%;
+      right: calc(-1 * clamp(14px, 2.4vw, 26px));
+      transform: translateY(-50%);
+      color: var(--ink-faint);
+      opacity: 0.55;
+      font-size: 0.9em;
+      letter-spacing: 0;
+    }
+    .truth.received {
+      color: var(--accent);
+      text-shadow: 0 0 8px rgba(217, 255, 60, 0.4);
+    }
+    .truth.receiving {
+      animation: truthReceive 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    @keyframes truthReceive {
+      0% { color: var(--ink-faint); text-shadow: none; transform: scale(1); }
+      20% { color: var(--accent); text-shadow: 0 0 24px var(--accent); transform: scale(1.4); }
+      60% { text-shadow: 0 0 14px var(--accent); transform: scale(1.1); }
+      100% { color: var(--accent); text-shadow: 0 0 8px rgba(217, 255, 60, 0.4); transform: scale(1); }
+    }
+
+    .hold-prompt {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 21px);
+      font-weight: 300;
+      color: var(--ink-soft);
+      margin-top: 44px;
+    }
+
+    /* hold-state flash overlay */
+    .flash-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 4, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 8;
+      opacity: 0;
+      pointer-events: none;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    .flash-overlay.flashing { animation: flashShow 1.6s ease forwards; }
+    @keyframes flashShow {
+      0% { opacity: 0; }
+      25% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .flash-overlay__word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(110px, 22vw, 280px);
+      font-weight: 200;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-shadow: 0 0 60px rgba(217, 255, 60, 0.25);
+    }
+    .flash-overlay.flashing .flash-overlay__word {
+      animation: flashWord 1.6s ease forwards;
+    }
+    @keyframes flashWord {
+      0% { transform: scale(0.92); opacity: 0; }
+      30% { transform: scale(1.02); opacity: 1; }
+      70% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.04); opacity: 0; }
+    }
+
+    /* ENFORCEMENT MODAL */
+    .enforce-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 4, 0.88);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      padding: 32px;
+    }
+    .enforce-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .enforce-modal__card {
+      max-width: 480px;
+      text-align: center;
+      width: 100%;
+      transform: translateY(24px);
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) 0.15s, opacity 0.7s ease 0.15s;
+    }
+    .enforce-modal.active .enforce-modal__card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .enforce-modal__label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+    .enforce-modal__label::before,
+    .enforce-modal__label::after {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .enforce-modal__title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(42px, 7vw, 64px);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 24px;
+      letter-spacing: -0.025em;
+      line-height: 1.0;
+    }
+    .enforce-modal__body {
+      font-family: var(--serif);
+      font-size: clamp(17px, 1.9vw, 20px);
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin-bottom: 40px;
+      font-weight: 300;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .enforce-modal__button {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 20px 36px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .enforce-modal__button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(217, 255, 60, 0.22);
+    }
+    .enforce-modal__button:active { transform: translateY(0); }
+
+    /* RELEASE TAKEOVER */
+    .release-takeover {
+      position: fixed;
+      inset: 0;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .release-takeover.active { opacity: 1; }
+    .release-takeover.fading { opacity: 0; transition: opacity 0.9s ease; }
+
+    .release-takeover__word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(96px, 21vw, 240px);
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: -0.045em;
+      text-shadow: 0 0 80px rgba(217, 255, 60, 0.32);
+      opacity: 0;
+      transform: scale(0.88);
+      transition: opacity 0.9s ease 0.4s, transform 1.5s cubic-bezier(0.2, 0.6, 0.2, 1) 0.4s;
+    }
+    .release-takeover.active .release-takeover__word {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* REVEAL */
+    .reveal-stage {
+      align-items: flex-start;
+      justify-content: center;
+      padding: 96px 0 96px;
+    }
+    .reveal-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(201, 169, 97, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .reveal__line {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.4vw, 26px);
+      line-height: 1.5;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 1.1s ease, transform 1.1s ease;
+    }
+    .reveal__line.beat {
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .reveal__centerpiece {
+      margin: 64px 0;
+      padding: 24px 0;
+      position: relative;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 1.4s ease, transform 1.4s ease;
+    }
+    .reveal__centerpiece p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--accent-warm);
+      line-height: 1.2;
+    }
+    .reveal__centerpiece p.line-big {
+      font-size: clamp(30px, 4.5vw, 48px);
+      margin-bottom: 18px;
+    }
+    .reveal__centerpiece p.line-small {
+      font-size: clamp(22px, 2.8vw, 30px);
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+    .reveal__centerpiece-rule {
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 32px;
+    }
+    .reveal-stage.active .reveal__centerpiece {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal__line:nth-of-type(1) { transition-delay: 0.4s; }
+    .reveal__line:nth-of-type(2) { transition-delay: 1.4s; }
+    .reveal-stage.active .reveal__centerpiece { transition-delay: 2.6s; }
+    .reveal__line:nth-of-type(3) { transition-delay: 4.6s; }
+    .reveal__line:nth-of-type(4) { transition-delay: 5.4s; }
+    .reveal__line:nth-of-type(5) { transition-delay: 6.2s; }
+    .reveal__line:nth-of-type(6) { transition-delay: 7.2s; }
+    .reveal__line:nth-of-type(7) { transition-delay: 8.0s; }
+    .reveal__line:nth-of-type(8) { transition-delay: 8.8s; }
+
+    .reveal-stage.active .reveal__line {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal__rule {
+      width: 40px;
+      height: 1px;
+      background: var(--accent-warm);
+      margin: 48px 0;
+      opacity: 0;
+      transition: opacity 1s ease 9.6s;
+    }
+    .reveal-stage.active .reveal__rule { opacity: 1; }
+
+    .reveal__cta {
+      margin-top: 24px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 1s ease 10.0s, transform 1s ease 10.0s;
+    }
+    .reveal-stage.active .reveal__cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal__question {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(22px, 2.8vw, 30px);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 40px;
+      max-width: 560px;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 22px 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(217, 255, 60, 0.22);
+    }
+    .cta-button:active { transform: translateY(0); }
+
+    .cta__trust {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      color: var(--ink-mute);
+      margin-top: 22px;
+      text-transform: uppercase;
+    }
+
+    .reveal__footer {
+      margin-top: 96px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      color: var(--ink-mute);
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      opacity: 0;
+      transition: opacity 1s ease 10.5s;
+    }
+    .reveal-stage.active .reveal__footer { opacity: 1; }
+    .reveal__footer a {
+      color: var(--ink-mute);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .reveal__footer a:hover {
+      color: var(--accent-warm);
+      border-bottom-color: var(--accent-warm);
+    }
+
+    .corner-byline {
+      position: fixed;
+      bottom: 28px;
+      left: 36px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      z-index: 5;
+      transition: opacity 0.5s ease;
+    }
+    .corner-byline.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .intro-stage.active .container > * {
+      animation: fadeUp 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) backwards;
+    }
+    .intro-stage.active .intro__label { animation-delay: 0.05s; }
+    .intro-stage.active .intro__title { animation-delay: 0.18s; }
+    .intro-stage.active .intro__rule { animation-delay: 0.28s; }
+    .intro-stage.active .intro__subtitle { animation-delay: 0.36s; }
+    .intro-stage.active .intro__truths { animation-delay: 0.5s; }
+    .intro-stage.active .hold-button { animation-delay: 0.64s; }
+    .intro-stage.active .intro__warning { animation-delay: 0.78s; }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 24px; }
+      .intro__label { margin-bottom: 36px; }
+      .intro__rule { margin: 24px auto; width: 40px; }
+      .intro__subtitle { margin-bottom: 36px; }
+      .intro__truths { margin-bottom: 48px; font-size: 11px; gap: 22px; }
+      .hold-button { padding: 26px 40px; width: 100%; max-width: 360px; }
+      .corner-byline { left: 24px; bottom: 18px; font-size: 9px; }
+
+      .hold-content { padding: 0 24px; }
+      .hold-system-label { margin-bottom: 24px; }
+      .hold-message { margin-bottom: 36px; font-size: 13px; }
+      .truths { margin-top: 32px; gap: 24px; font-size: 13px; }
+      .hold-prompt { margin-top: 36px; font-size: 16px; }
+
+      .enforce-modal { padding: 24px; }
+      .enforce-modal__button { width: 100%; padding: 22px 28px; }
+
+      .reveal-stage { padding: 64px 0 80px; }
+      .reveal__centerpiece { margin: 48px 0; padding: 16px 0; }
+      .reveal__line { margin-bottom: 24px; }
+      .reveal__rule { margin: 36px 0; }
+      .cta-button {
+        width: 100%;
+        text-align: center;
+        padding: 24px 28px;
+      }
+      .reveal__footer {
+        margin-top: 72px;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="stage intro-stage active" id="introStage">
+    <div class="container">
+      <div class="intro__label">A Revelation</div>
+
+      <h1 class="intro__title">
+        What makes great companies <em>great?</em>
+      </h1>
+
+      <div class="intro__rule"></div>
+
+      <p class="intro__subtitle">
+        The answer arrives in <em>five truths</em>. Press and hold to begin receiving them. The longer you hold, the deeper you go.
+      </p>
+
+      <div class="intro__truths" aria-hidden="true">
+        <span>I</span><span>II</span><span>III</span><span>IV</span><span>V</span>
+      </div>
+
+      <button class="hold-button" id="holdBtn" type="button">
+        Press &amp; hold to begin
+      </button>
+
+      <p class="intro__warning">Do not let go before the final truth</p>
+    </div>
+  </section>
+
+  <div class="corner-byline" id="byline">Günther Rainer</div>
+
+  <section class="stage hold-stage" id="holdStage">
+    <div class="hold-pulse"></div>
+    <div class="hold-bg">
+      <div class="hold-bg__word" id="holdBgWord">hold</div>
+    </div>
+
+    <div class="hold-content">
+      <div class="hold-system-label">
+        <span class="hold-system-label__dot"></span>
+        <span>System · Engaged</span>
+      </div>
+      <div class="hold-message" id="holdMessage">Initialising</div>
+
+      <div class="progress-wrap">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-percent" id="progressPercent">0%</div>
+      </div>
+
+      <div class="truths" id="truths">
+        <span class="truth" data-truth="0">I</span>
+        <span class="truth" data-truth="1">II</span>
+        <span class="truth" data-truth="2">III</span>
+        <span class="truth" data-truth="3">IV</span>
+        <span class="truth" data-truth="4">V</span>
+      </div>
+
+      <p class="hold-prompt">Do not let go.</p>
+    </div>
+  </section>
+
+  <div class="flash-overlay" id="flashOverlay">
+    <div class="flash-overlay__word" id="flashWord">Hold</div>
+  </div>
+
+  <div class="enforce-modal" id="enforceModal" aria-hidden="true">
+    <div class="enforce-modal__card">
+      <div class="enforce-modal__label">System · Interrupted</div>
+      <h2 class="enforce-modal__title" id="enforceTitle">Not yet.</h2>
+      <p class="enforce-modal__body" id="enforceBody">You released before the first truth could arrive. Press and hold again, and this time do not let go.</p>
+      <button class="enforce-modal__button" id="enforceRetry" type="button">Press &amp; hold again</button>
+    </div>
+  </div>
+
+  <div class="release-takeover" id="releaseTakeover">
+    <div class="release-takeover__word">Exactly.</div>
+  </div>
+
+  <section class="stage reveal-stage" id="revealStage">
+    <div class="container">
+
+      <p class="reveal__line">You let go.</p>
+      <p class="reveal__line beat">Even though the system kept promising the next truth.</p>
+
+      <div class="reveal__centerpiece">
+        <div class="reveal__centerpiece-rule"></div>
+        <p class="line-big">There was no fifth truth. There never was.</p>
+        <p class="line-small">There was only one. And you just found it.</p>
+      </div>
+
+      <p class="reveal__line">This is what every great company eventually learns.</p>
+      <p class="reveal__line">The ones that hold on too long do not survive.</p>
+      <p class="reveal__line">The ones that thrive learn what to release, and when.</p>
+      <p class="reveal__line beat">The product that built them. The structure that scaled them. The story they kept telling themselves.</p>
+      <p class="reveal__line">Most leaders sense it long before they say it.</p>
+      <p class="reveal__line beat">The hard part is admitting the moment has arrived.</p>
+
+      <div class="reveal__rule"></div>
+
+      <div class="reveal__cta">
+        <p class="reveal__question">If your company is holding on to something it shouldn't, let's have that conversation.</p>
+        <a href="https://calendly.com/guentherrainer/private" class="cta-button" target="_blank" rel="noopener">Talk to me →</a>
+        <p class="cta__trust">No pitch · You speak directly with me</p>
+      </div>
+
+      <div class="reveal__footer">
+        <span>Günther Rainer</span>
+        <a href="mailto:guentherrainer@gmx.at">guentherrainer@gmx.at</a>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      const introStage = document.getElementById('introStage');
+      const holdStage = document.getElementById('holdStage');
+      const revealStage = document.getElementById('revealStage');
+      const holdBtn = document.getElementById('holdBtn');
+      const byline = document.getElementById('byline');
+
+      const holdMessage = document.getElementById('holdMessage');
+      const holdBgWord = document.getElementById('holdBgWord');
+      const progressFill = document.getElementById('progressFill');
+      const progressPercent = document.getElementById('progressPercent');
+      const flashOverlay = document.getElementById('flashOverlay');
+      const flashWord = document.getElementById('flashWord');
+      const releaseTakeover = document.getElementById('releaseTakeover');
+      const truthEls = document.querySelectorAll('#truths .truth');
+
+      const enforceModal = document.getElementById('enforceModal');
+      const enforceTitle = document.getElementById('enforceTitle');
+      const enforceBody = document.getElementById('enforceBody');
+      const enforceRetry = document.getElementById('enforceRetry');
+
+      let holdActive = false;
+      let holdStart = 0;
+      let rafId = null;
+      let revealed = false;
+      let currentBgWord = 'hold';
+      let flashTriggered = {};
+      let truthsReceived = 0;
+
+      const THRESHOLD = 4.0;
+      const TRUTH_TIMES = [4, 10, 18, 28];
+
+      function buzz(pattern) {
+        if (navigator.vibrate) {
+          try { navigator.vibrate(pattern); } catch (e) {}
+        }
+      }
+
+      function progressCurve(t) {
+        if (t < 1.0) return t * 18;
+        if (t < 2.5) return 18 + (t - 1.0) * 22;
+        if (t < 4.5) return 51 + (t - 2.5) * 8;
+        if (t < 8.0) return 67 + (t - 4.5) * 2.5;
+        if (t < 14.0) return 76 + (t - 8.0) * 1.2;
+        if (t < 25.0) return 83 + (t - 14.0) * 0.5;
+        return Math.min(94, 88.5 + (t - 25.0) * 0.15);
+      }
+
+      function getMessage(t) {
+        if (t < 1.5) return { text: 'Initialising', mode: 'normal' };
+        if (t < 3.0) return { text: 'Decoding the pattern', mode: 'normal' };
+        if (t < 4.0) return { text: 'Truth I approaching', mode: 'normal' };
+        if (t < 6.0) return { text: 'Truth I received', mode: 'normal' };
+        if (t < 9.0) return { text: 'Truth II forming', mode: 'normal' };
+        if (t < 10.0) return { text: 'Truth II approaching', mode: 'normal' };
+        if (t < 12.0) return { text: 'Truth II received', mode: 'normal' };
+        if (t < 16.0) return { text: 'Truth III forming', mode: 'normal' };
+        if (t < 18.0) return { text: 'Truth III approaching', mode: 'danger' };
+        if (t < 20.0) return { text: 'Truth III received', mode: 'danger' };
+        if (t < 25.0) return { text: 'Truth IV forming', mode: 'danger' };
+        if (t < 28.0) return { text: 'Truth IV approaching', mode: 'danger' };
+        if (t < 31.0) return { text: 'Truth IV received', mode: 'danger' };
+        if (t < 40.0) return { text: 'Final truth forming', mode: 'danger' };
+        if (t < 52.0) return { text: 'Hold for the final truth', mode: 'critical' };
+        if (t < 70.0) return { text: 'Final truth near', mode: 'critical' };
+        return { text: 'Hold...', mode: 'critical' };
+      }
+
+      function getBgWord(t) {
+        if (t < 7) return 'hold';
+        if (t < 14) return 'stay';
+        if (t < 21) return 'wait';
+        if (t < 28) return 'keep';
+        if (t < 36) return 'more';
+        return 'hold';
+      }
+
+      function setStage(name) {
+        introStage.classList.toggle('active', name === 'intro');
+        holdStage.classList.toggle('active', name === 'hold');
+        revealStage.classList.toggle('active', name === 'reveal');
+        document.body.classList.toggle('holding', name === 'hold');
+        if (name === 'reveal') {
+          document.body.classList.add('released');
+          window.scrollTo(0, 0);
+        } else {
+          document.body.classList.remove('released');
+        }
+      }
+
+      function setIntensity(level) {
+        for (let i = 1; i <= 3; i++) {
+          document.body.classList.toggle('intense-' + i, level === i);
+          holdStage.classList.toggle('intensity-' + i, level === i);
+        }
+      }
+
+      function setPeaking(level) {
+        for (let i = 1; i <= 3; i++) {
+          holdStage.classList.toggle('peaking-' + i, level === i);
+        }
+      }
+
+      function triggerFlash(word) {
+        flashWord.textContent = word;
+        flashOverlay.classList.remove('flashing');
+        void flashOverlay.offsetWidth;
+        flashOverlay.classList.add('flashing');
+        buzz(40);
+        setTimeout(function() {
+          flashOverlay.classList.remove('flashing');
+        }, 1700);
+      }
+
+      function maybeFlash(t) {
+        if (t > 14 && !flashTriggered[14]) { flashTriggered[14] = true; triggerFlash('Hold'); }
+        if (t > 24 && !flashTriggered[24]) { flashTriggered[24] = true; triggerFlash('Stay'); }
+        if (t > 42 && !flashTriggered[42]) { flashTriggered[42] = true; triggerFlash('Hold'); }
+        if (t > 58 && !flashTriggered[58]) { flashTriggered[58] = true; triggerFlash('More'); }
+      }
+
+      function maybeReceiveTruth(t) {
+        for (let i = 0; i < TRUTH_TIMES.length; i++) {
+          if (t > TRUTH_TIMES[i] && truthsReceived <= i) {
+            receiveTruth(i);
+          }
+        }
+      }
+
+      function receiveTruth(index) {
+        truthsReceived = index + 1;
+        const el = truthEls[index];
+        el.classList.add('receiving');
+        setTimeout(function() {
+          el.classList.remove('receiving');
+          el.classList.add('received');
+        }, 1200);
+        buzz(35);
+      }
+
+      function updateBgWord(t) {
+        const target = getBgWord(t);
+        if (target !== currentBgWord) {
+          holdBgWord.classList.add('fading');
+          setTimeout(function() {
+            holdBgWord.textContent = target;
+            holdBgWord.classList.remove('fading');
+          }, 600);
+          currentBgWord = target;
+        }
+      }
+
+      function resetHoldVisuals() {
+        setIntensity(0);
+        setPeaking(0);
+        flashOverlay.classList.remove('flashing');
+        progressFill.style.width = '0%';
+        progressPercent.textContent = '0%';
+        holdMessage.textContent = 'Initialising';
+        holdMessage.classList.remove('danger', 'critical');
+        truthsReceived = 0;
+        truthEls.forEach(function(el) {
+          el.classList.remove('received', 'receiving');
+        });
+        flashTriggered = {};
+        currentBgWord = 'hold';
+        holdBgWord.textContent = 'hold';
+        holdBgWord.classList.remove('fading');
+      }
+
+      function tick() {
+        if (!holdActive) return;
+        const elapsed = (performance.now() - holdStart) / 1000;
+        const p = Math.min(94, progressCurve(elapsed));
+        progressFill.style.width = p + '%';
+        progressPercent.textContent = Math.floor(p) + '%';
+
+        const msg = getMessage(elapsed);
+        if (holdMessage.textContent !== msg.text) {
+          holdMessage.style.opacity = '0';
+          setTimeout(function() {
+            if (!holdActive) return;
+            holdMessage.textContent = msg.text;
+            holdMessage.classList.remove('danger', 'critical');
+            if (msg.mode === 'danger') holdMessage.classList.add('danger');
+            if (msg.mode === 'critical') holdMessage.classList.add('critical');
+            holdMessage.style.opacity = '1';
+          }, 200);
+        }
+
+        updateBgWord(elapsed);
+        maybeReceiveTruth(elapsed);
+
+        if (elapsed > 20) setIntensity(3);
+        else if (elapsed > 10) setIntensity(2);
+        else setIntensity(1);
+
+        if (elapsed > 20) setPeaking(3);
+        else if (elapsed > 10) setPeaking(2);
+        else if (elapsed > 4) setPeaking(1);
+
+        maybeFlash(elapsed);
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function startHold(e) {
+        if (revealed) return;
+        if (e) e.preventDefault();
+        if (holdActive) return;
+
+        holdActive = true;
+        holdStart = performance.now();
+        holdBtn.classList.add('armed');
+        if (byline) byline.classList.add('hidden');
+        buzz(20);
+
+        resetHoldVisuals();
+
+        setTimeout(function() {
+          if (!holdActive) return;
+          setStage('hold');
+        }, 80);
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function endHold(e) {
+        if (!holdActive) return;
+        if (e && e.cancelable) e.preventDefault();
+        holdActive = false;
+        if (rafId) cancelAnimationFrame(rafId);
+        holdBtn.classList.remove('armed');
+
+        const elapsed = (performance.now() - holdStart) / 1000;
+
+        // Catch early releases — show enforcement modal
+        if (elapsed < THRESHOLD) {
+          showEnforceModal(elapsed);
+          return;
+        }
+
+        revealed = true;
+        triggerReleaseSequence();
+      }
+
+      function showEnforceModal(elapsed) {
+        buzz([60, 40, 60]);
+
+        // Reset visuals and return to intro behind the modal
+        resetHoldVisuals();
+        holdStage.classList.remove('active');
+        document.body.classList.remove('holding');
+        introStage.classList.add('active');
+        if (byline) byline.classList.remove('hidden');
+
+        // Tailored message
+        if (elapsed < 1.0) {
+          enforceTitle.textContent = 'Hold.';
+          enforceBody.textContent = 'This is a press AND hold experience. Tapping is not enough. Press the button and keep your finger down until the truth reveals itself.';
+        } else {
+          enforceTitle.textContent = 'Not yet.';
+          enforceBody.textContent = 'You released before the first truth could arrive. Press and hold again, and this time do not let go.';
+        }
+
+        setTimeout(function() {
+          enforceModal.classList.add('active');
+          enforceModal.setAttribute('aria-hidden', 'false');
+        }, 300);
+      }
+
+      function dismissEnforceModal() {
+        enforceModal.classList.remove('active');
+        enforceModal.setAttribute('aria-hidden', 'true');
+      }
+
+      function triggerReleaseSequence() {
+        buzz([120, 80, 100]);
+
+        setIntensity(0);
+        setPeaking(0);
+        flashOverlay.classList.remove('flashing');
+
+        releaseTakeover.classList.add('active');
+
+        setTimeout(function() {
+          holdStage.classList.remove('active');
+          setStage('reveal');
+        }, 200);
+
+        setTimeout(function() {
+          releaseTakeover.classList.add('fading');
+        }, 2400);
+
+        setTimeout(function() {
+          releaseTakeover.classList.remove('active', 'fading');
+        }, 3400);
+      }
+
+      function attachHoldHandlers() {
+        holdBtn.addEventListener('pointerdown', function(e) {
+          try { holdBtn.setPointerCapture(e.pointerId); } catch (err) {}
+          startHold(e);
+        });
+
+        const releaseEvents = ['pointerup', 'pointercancel'];
+        releaseEvents.forEach(function(evtName) {
+          document.addEventListener(evtName, endHold);
+          window.addEventListener(evtName, endHold);
+        });
+
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden && holdActive) endHold();
+        });
+
+        holdBtn.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        holdStage.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+        enforceRetry.addEventListener('click', dismissEnforceModal);
+      }
+
+      document.addEventListener('touchmove', function(e) {
+        if (holdActive) e.preventDefault();
+      }, { passive: false });
+
+      attachHoldHandlers();
+    })();
+  </script>
+</body>
+</html>
