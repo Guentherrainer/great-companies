@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <title>What Makes Great Companies Great</title>
-  <meta name="description" content="A revelation in five truths. By Günther Rainer.">
+  <meta name="description" content="A revealing experience about what makes great companies great. By Günther Rainer.">
   <meta name="theme-color" content="#0E0D0A">
 
   <meta property="og:title" content="What Makes Great Companies Great">
-  <meta property="og:description" content="The answer arrives in five truths. Press and hold to receive them.">
+  <meta property="og:description" content="A revealing experience about what most companies forget. By Günther Rainer.">
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -117,10 +117,7 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
-    .stage.active {
-      opacity: 1;
-      visibility: visible;
-    }
+    .stage.active { opacity: 1; visibility: visible; }
 
     /* INTRO */
     .intro__label {
@@ -128,7 +125,7 @@
       font-size: 11px;
       letter-spacing: 0.26em;
       color: var(--ink-mute);
-      margin-bottom: 56px;
+      margin-bottom: 24px;
       text-transform: uppercase;
       display: flex;
       align-items: center;
@@ -141,6 +138,21 @@
       width: 24px;
       height: 1px;
       background: var(--accent-warm);
+    }
+
+    .intro__byline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(14px, 1.5vw, 17px);
+      color: var(--ink-mute);
+      text-align: center;
+      margin-bottom: 56px;
+      font-weight: 300;
+    }
+    .intro__byline strong {
+      color: var(--ink-soft);
+      font-weight: 400;
+      font-style: normal;
     }
 
     .intro__title {
@@ -168,12 +180,12 @@
     .intro__subtitle {
       font-family: var(--serif);
       font-size: clamp(17px, 1.8vw, 20px);
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--ink-soft);
-      margin-bottom: 48px;
+      margin-bottom: 24px;
       font-weight: 300;
       text-align: center;
-      max-width: 520px;
+      max-width: 560px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -181,13 +193,23 @@
       font-style: italic;
       color: var(--accent-warm);
     }
+    .intro__subtitle strong {
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .intro__subtitle .small {
+      display: block;
+      margin-top: 18px;
+      font-size: clamp(15px, 1.5vw, 17px);
+      color: var(--ink-mute);
+    }
 
     .intro__truths {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: clamp(20px, 4vw, 36px);
-      margin-bottom: 64px;
+      margin: 48px 0 64px;
       font-family: var(--mono);
       font-size: 13px;
       letter-spacing: 0.28em;
@@ -205,6 +227,10 @@
       opacity: 0.7;
       font-size: 0.95em;
       letter-spacing: 0;
+    }
+    .intro__truths span.fifth {
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(217, 255, 60, 0.3);
     }
 
     .hold-button {
@@ -236,7 +262,7 @@
       font-family: var(--mono);
       font-size: 10.5px;
       letter-spacing: 0.24em;
-      color: var(--ink-mute);
+      color: var(--accent);
       margin-top: 36px;
       text-transform: uppercase;
       text-align: center;
@@ -299,6 +325,51 @@
     .hold-stage.peaking-1 .hold-bg__word { filter: blur(14px); opacity: 0.3; }
     .hold-stage.peaking-2 .hold-bg__word { filter: blur(8px); opacity: 0.38; }
     .hold-stage.peaking-3 .hold-bg__word { filter: blur(5px); opacity: 0.45; }
+
+    /* When a truth word is being revealed, suppress the background word entirely
+       so the two never overlap visually */
+    .hold-stage.revealing-truth .hold-bg__word {
+      opacity: 0 !important;
+      transition: opacity 0.4s ease;
+    }
+
+    /* TRUTH-WORD REVEAL */
+    .truth-word {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 6;
+      opacity: 0;
+    }
+    .truth-word__text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(100px, 20vw, 280px);
+      color: var(--accent-warm);
+      letter-spacing: -0.03em;
+      filter: blur(20px);
+      opacity: 0;
+      transform: scale(0.96);
+      text-align: center;
+      padding: 0 16px;
+      text-shadow: 0 0 60px rgba(201, 169, 97, 0.5);
+      white-space: nowrap;
+    }
+    .truth-word.showing .truth-word__text {
+      animation: truthWordReveal 3.6s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+    }
+    @keyframes truthWordReveal {
+      0% { opacity: 0; filter: blur(28px); transform: scale(0.94); }
+      18% { opacity: 0.85; filter: blur(10px); transform: scale(1); }
+      45% { opacity: 0.78; filter: blur(8px); transform: scale(1.005); }
+      72% { opacity: 0.7; filter: blur(10px); transform: scale(1.01); }
+      100% { opacity: 0; filter: blur(26px); transform: scale(1.02); }
+    }
+    .truth-word.showing { opacity: 1; }
 
     .hold-content {
       position: relative;
@@ -454,7 +525,7 @@
       margin-top: 44px;
     }
 
-    /* hold-state flash overlay */
+    /* flash overlay */
     .flash-overlay {
       position: fixed;
       inset: 0;
@@ -516,7 +587,7 @@
       visibility: visible;
     }
     .enforce-modal__card {
-      max-width: 480px;
+      max-width: 500px;
       text-align: center;
       width: 100%;
       transform: translateY(24px);
@@ -556,6 +627,14 @@
       letter-spacing: -0.025em;
       line-height: 1.0;
     }
+    .enforce-modal__progress {
+      font-family: var(--mono);
+      font-size: clamp(11px, 1.3vw, 12.5px);
+      letter-spacing: 0.24em;
+      color: var(--accent-warm);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
     .enforce-modal__body {
       font-family: var(--serif);
       font-size: clamp(17px, 1.9vw, 20px);
@@ -563,9 +642,13 @@
       line-height: 1.5;
       margin-bottom: 40px;
       font-weight: 300;
-      max-width: 420px;
+      max-width: 440px;
       margin-left: auto;
       margin-right: auto;
+    }
+    .enforce-modal__body em {
+      color: var(--accent);
+      font-style: italic;
     }
     .enforce-modal__button {
       background: var(--accent);
@@ -576,15 +659,22 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      padding: 20px 36px;
+      padding: 22px 36px;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      overflow: hidden;
     }
     .enforce-modal__button:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 36px rgba(217, 255, 60, 0.22);
     }
-    .enforce-modal__button:active { transform: translateY(0); }
+    .enforce-modal__button.armed {
+      transform: scale(0.98);
+      background: #B8DD33;
+    }
 
     /* RELEASE TAKEOVER */
     .release-takeover {
@@ -686,15 +776,89 @@
       transform: translateY(0);
     }
 
+    /* LIFECYCLE */
+    .reveal__lifecycle {
+      margin: 56px 0;
+      padding: 36px 32px;
+      background: rgba(217, 255, 60, 0.03);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 1.4s ease, transform 1.4s ease;
+    }
+    .reveal__lifecycle-label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      color: var(--ink-mute);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .reveal__lifecycle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .reveal__lifecycle-item {
+      display: grid;
+      grid-template-columns: 36px 1fr 1.5fr;
+      gap: 16px;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .reveal__lifecycle-item:last-child {
+      border-bottom: none;
+    }
+    .reveal__lifecycle-item.climax {
+      padding: 18px 0 6px;
+    }
+    .reveal__lifecycle-roman {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+    }
+    .reveal__lifecycle-item.climax .reveal__lifecycle-roman {
+      color: var(--accent);
+    }
+    .reveal__lifecycle-word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(20px, 2.4vw, 26px);
+      color: var(--accent-warm);
+      letter-spacing: -0.015em;
+    }
+    .reveal__lifecycle-item.climax .reveal__lifecycle-word {
+      color: var(--accent);
+      font-size: clamp(24px, 3vw, 30px);
+      font-weight: 400;
+    }
+    .reveal__lifecycle-stage {
+      font-family: var(--serif);
+      font-size: clamp(15px, 1.5vw, 17px);
+      color: var(--ink-soft);
+      line-height: 1.4;
+      font-weight: 300;
+    }
+    .reveal-stage.active .reveal__lifecycle {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .reveal__line:nth-of-type(1) { transition-delay: 0.4s; }
     .reveal__line:nth-of-type(2) { transition-delay: 1.4s; }
     .reveal-stage.active .reveal__centerpiece { transition-delay: 2.6s; }
     .reveal__line:nth-of-type(3) { transition-delay: 4.6s; }
-    .reveal__line:nth-of-type(4) { transition-delay: 5.4s; }
-    .reveal__line:nth-of-type(5) { transition-delay: 6.2s; }
-    .reveal__line:nth-of-type(6) { transition-delay: 7.2s; }
-    .reveal__line:nth-of-type(7) { transition-delay: 8.0s; }
-    .reveal__line:nth-of-type(8) { transition-delay: 8.8s; }
+    .reveal-stage.active .reveal__lifecycle { transition-delay: 5.6s; }
+    .reveal__line:nth-of-type(4) { transition-delay: 7.4s; }
+    .reveal__line:nth-of-type(5) { transition-delay: 8.4s; }
+    .reveal__line:nth-of-type(6) { transition-delay: 9.4s; }
+    .reveal__line:nth-of-type(7) { transition-delay: 10.4s; }
 
     .reveal-stage.active .reveal__line {
       opacity: 1;
@@ -707,7 +871,7 @@
       background: var(--accent-warm);
       margin: 48px 0;
       opacity: 0;
-      transition: opacity 1s ease 9.6s;
+      transition: opacity 1s ease 11.2s;
     }
     .reveal-stage.active .reveal__rule { opacity: 1; }
 
@@ -715,7 +879,7 @@
       margin-top: 24px;
       opacity: 0;
       transform: translateY(12px);
-      transition: opacity 1s ease 10.0s, transform 1s ease 10.0s;
+      transition: opacity 1s ease 11.6s, transform 1s ease 11.6s;
     }
     .reveal-stage.active .reveal__cta {
       opacity: 1;
@@ -775,7 +939,7 @@
       flex-wrap: wrap;
       gap: 14px;
       opacity: 0;
-      transition: opacity 1s ease 10.5s;
+      transition: opacity 1s ease 12.0s;
     }
     .reveal-stage.active .reveal__footer { opacity: 1; }
     .reveal__footer a {
@@ -814,19 +978,20 @@
       animation: fadeUp 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) backwards;
     }
     .intro-stage.active .intro__label { animation-delay: 0.05s; }
-    .intro-stage.active .intro__title { animation-delay: 0.18s; }
-    .intro-stage.active .intro__rule { animation-delay: 0.28s; }
-    .intro-stage.active .intro__subtitle { animation-delay: 0.36s; }
-    .intro-stage.active .intro__truths { animation-delay: 0.5s; }
-    .intro-stage.active .hold-button { animation-delay: 0.64s; }
-    .intro-stage.active .intro__warning { animation-delay: 0.78s; }
+    .intro-stage.active .intro__byline { animation-delay: 0.12s; }
+    .intro-stage.active .intro__title { animation-delay: 0.22s; }
+    .intro-stage.active .intro__rule { animation-delay: 0.32s; }
+    .intro-stage.active .intro__subtitle { animation-delay: 0.4s; }
+    .intro-stage.active .intro__truths { animation-delay: 0.54s; }
+    .intro-stage.active .hold-button { animation-delay: 0.68s; }
+    .intro-stage.active .intro__warning { animation-delay: 0.82s; }
 
     @media (max-width: 640px) {
       .container { padding: 0 24px; }
-      .intro__label { margin-bottom: 36px; }
+      .intro__label { margin-bottom: 18px; }
+      .intro__byline { margin-bottom: 36px; }
       .intro__rule { margin: 24px auto; width: 40px; }
-      .intro__subtitle { margin-bottom: 36px; }
-      .intro__truths { margin-bottom: 48px; font-size: 11px; gap: 22px; }
+      .intro__truths { margin: 36px 0 48px; font-size: 11px; gap: 22px; }
       .hold-button { padding: 26px 40px; width: 100%; max-width: 360px; }
       .corner-byline { left: 24px; bottom: 18px; font-size: 9px; }
 
@@ -836,11 +1001,21 @@
       .truths { margin-top: 32px; gap: 24px; font-size: 13px; }
       .hold-prompt { margin-top: 36px; font-size: 16px; }
 
+      .truth-word__text { font-size: clamp(72px, 18vw, 200px); }
+
       .enforce-modal { padding: 24px; }
-      .enforce-modal__button { width: 100%; padding: 22px 28px; }
+      .enforce-modal__button { width: 100%; padding: 24px 28px; }
 
       .reveal-stage { padding: 64px 0 80px; }
       .reveal__centerpiece { margin: 48px 0; padding: 16px 0; }
+      .reveal__lifecycle { margin: 40px 0; padding: 28px 20px; }
+      .reveal__lifecycle-item {
+        grid-template-columns: 28px 1fr;
+        grid-template-rows: auto auto;
+      }
+      .reveal__lifecycle-stage {
+        grid-column: 2 / 3;
+      }
       .reveal__line { margin-bottom: 24px; }
       .reveal__rule { margin: 36px 0; }
       .cta-button {
@@ -868,6 +1043,8 @@
     <div class="container">
       <div class="intro__label">A Revelation</div>
 
+      <div class="intro__byline">a revealing experience about what makes great companies great. by <strong>Günther Rainer</strong>.</div>
+
       <h1 class="intro__title">
         What makes great companies <em>great?</em>
       </h1>
@@ -875,18 +1052,19 @@
       <div class="intro__rule"></div>
 
       <p class="intro__subtitle">
-        The answer arrives in <em>five truths</em>. Press and hold to begin receiving them. The longer you hold, the deeper you go.
+        <strong>Great companies are great because they hold on through real difficulty.</strong> Five truths carry them across their lifecycle. The fifth completes the cycle.
+        <span class="small">Press and hold to receive them. Do not release before the fifth arrives.</span>
       </p>
 
       <div class="intro__truths" aria-hidden="true">
-        <span>I</span><span>II</span><span>III</span><span>IV</span><span>V</span>
+        <span>I</span><span>II</span><span>III</span><span>IV</span><span class="fifth">V</span>
       </div>
 
       <button class="hold-button" id="holdBtn" type="button">
         Press &amp; hold to begin
       </button>
 
-      <p class="intro__warning">Do not let go before the final truth</p>
+      <p class="intro__warning">The fifth truth is essential</p>
     </div>
   </section>
 
@@ -896,6 +1074,10 @@
     <div class="hold-pulse"></div>
     <div class="hold-bg">
       <div class="hold-bg__word" id="holdBgWord">hold</div>
+    </div>
+
+    <div class="truth-word" id="truthWordLayer">
+      <div class="truth-word__text" id="truthWordText">Conviction</div>
     </div>
 
     <div class="hold-content">
@@ -930,10 +1112,11 @@
 
   <div class="enforce-modal" id="enforceModal" aria-hidden="true">
     <div class="enforce-modal__card">
-      <div class="enforce-modal__label">System · Interrupted</div>
+      <div class="enforce-modal__label">System · Paused</div>
       <h2 class="enforce-modal__title" id="enforceTitle">Not yet.</h2>
-      <p class="enforce-modal__body" id="enforceBody">You released before the first truth could arrive. Press and hold again, and this time do not let go.</p>
-      <button class="enforce-modal__button" id="enforceRetry" type="button">Press &amp; hold again</button>
+      <p class="enforce-modal__progress" id="enforceProgress">0 of 5 truths received</p>
+      <p class="enforce-modal__body" id="enforceBody">You released before the first truth could arrive. Your progress is saved. Press and hold to continue from where you left off.</p>
+      <button class="enforce-modal__button" id="enforceRetry" type="button">Press &amp; hold to continue</button>
     </div>
   </div>
 
@@ -945,27 +1128,56 @@
     <div class="container">
 
       <p class="reveal__line">You let go.</p>
-      <p class="reveal__line beat">Even though the system kept promising the next truth.</p>
+      <p class="reveal__line beat">Even though the system told you the fifth was essential.</p>
 
       <div class="reveal__centerpiece">
         <div class="reveal__centerpiece-rule"></div>
-        <p class="line-big">There was no fifth truth. There never was.</p>
-        <p class="line-small">There was only one. And you just found it.</p>
+        <p class="line-big">There was no fifth truth.</p>
+        <p class="line-small">The fourth already told you. Release.</p>
       </div>
 
-      <p class="reveal__line">This is what every great company eventually learns.</p>
-      <p class="reveal__line">The ones that hold on too long do not survive.</p>
-      <p class="reveal__line">The ones that thrive learn what to release, and when.</p>
-      <p class="reveal__line beat">The product that built them. The structure that scaled them. The story they kept telling themselves.</p>
-      <p class="reveal__line">Most leaders sense it long before they say it.</p>
-      <p class="reveal__line beat">The hard part is admitting the moment has arrived.</p>
+      <p class="reveal__line">The four you almost saw, blurred and just out of reach, are the four moves every great company makes across its lifecycle:</p>
+
+      <div class="reveal__lifecycle">
+        <div class="reveal__lifecycle-label">The Lifecycle of a Great Company</div>
+        <div class="reveal__lifecycle-list">
+          <div class="reveal__lifecycle-item">
+            <span class="reveal__lifecycle-roman">I</span>
+            <span class="reveal__lifecycle-word">Conviction</span>
+            <span class="reveal__lifecycle-stage">Founding. Bet on something the market has not validated yet.</span>
+          </div>
+          <div class="reveal__lifecycle-item">
+            <span class="reveal__lifecycle-roman">II</span>
+            <span class="reveal__lifecycle-word">Discipline</span>
+            <span class="reveal__lifecycle-stage">Scaling. Build systems that outlast the original founders' room.</span>
+          </div>
+          <div class="reveal__lifecycle-item">
+            <span class="reveal__lifecycle-roman">III</span>
+            <span class="reveal__lifecycle-word">Humility</span>
+            <span class="reveal__lifecycle-stage">Dominance. Accept that you are now the system others fight against.</span>
+          </div>
+          <div class="reveal__lifecycle-item climax">
+            <span class="reveal__lifecycle-roman">IV</span>
+            <span class="reveal__lifecycle-word">Release</span>
+            <span class="reveal__lifecycle-stage">Maturity. Let go of yesterday's winning move. Build the next business before this one is finished.</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="reveal__line beat">Most companies wait so long for the fifth that they miss the fourth.</p>
+
+      <p class="reveal__line">They hold on too long. To the product that built them. To the structure that scaled them. To the story they kept telling themselves.</p>
+
+      <p class="reveal__line">By the time they finally let go, the moment has already passed.</p>
+
+      <p class="reveal__line beat">The hard part is not knowing which release is next. The hard part is making it before you are forced to.</p>
 
       <div class="reveal__rule"></div>
 
       <div class="reveal__cta">
         <p class="reveal__question">If your company is holding on to something it shouldn't, let's have that conversation.</p>
         <a href="https://calendly.com/guentherrainer/private" class="cta-button" target="_blank" rel="noopener">Talk to me →</a>
-        <p class="cta__trust">No pitch · You speak directly with me</p>
+        <p class="cta__trust">You speak directly with me</p>
       </div>
 
       <div class="reveal__footer">
@@ -992,22 +1204,27 @@
       const flashWord = document.getElementById('flashWord');
       const releaseTakeover = document.getElementById('releaseTakeover');
       const truthEls = document.querySelectorAll('#truths .truth');
+      const truthWordLayer = document.getElementById('truthWordLayer');
+      const truthWordText = document.getElementById('truthWordText');
 
       const enforceModal = document.getElementById('enforceModal');
       const enforceTitle = document.getElementById('enforceTitle');
+      const enforceProgress = document.getElementById('enforceProgress');
       const enforceBody = document.getElementById('enforceBody');
       const enforceRetry = document.getElementById('enforceRetry');
 
       let holdActive = false;
       let holdStart = 0;
+      let elapsedBank = 0;
       let rafId = null;
       let revealed = false;
       let currentBgWord = 'hold';
       let flashTriggered = {};
       let truthsReceived = 0;
 
-      const THRESHOLD = 4.0;
-      const TRUTH_TIMES = [4, 10, 18, 28];
+      const RELEASE_THRESHOLD = 19.5;
+      const TRUTH_TIMES = [4, 9, 14, 19];
+      const TRUTH_WORDS = ['Conviction', 'Discipline', 'Humility', 'Release'];
 
       function buzz(pattern) {
         if (navigator.vibrate) {
@@ -1015,42 +1232,52 @@
         }
       }
 
+      function getElapsed() {
+        if (!holdActive) return elapsedBank;
+        return elapsedBank + (performance.now() - holdStart) / 1000;
+      }
+
       function progressCurve(t) {
-        if (t < 1.0) return t * 18;
-        if (t < 2.5) return 18 + (t - 1.0) * 22;
-        if (t < 4.5) return 51 + (t - 2.5) * 8;
-        if (t < 8.0) return 67 + (t - 4.5) * 2.5;
-        if (t < 14.0) return 76 + (t - 8.0) * 1.2;
-        if (t < 25.0) return 83 + (t - 14.0) * 0.5;
-        return Math.min(94, 88.5 + (t - 25.0) * 0.15);
+        // Smooth, evenly-paced curve. Reaches ~85% at Truth IV (19s),
+        // then eases gently toward an asymptote near 95% (never 100%).
+        if (t <= 19) {
+          return 85 * Math.sqrt(t / 19) * (0.55 + 0.45 * (t / 19));
+        }
+        // Post Truth IV: tight asymptotic approach so the bar visibly stalls.
+        const overshoot = t - 19;
+        return 95 - 10 * Math.exp(-overshoot / 15);
       }
 
       function getMessage(t) {
+        // Initialise
         if (t < 1.5) return { text: 'Initialising', mode: 'normal' };
         if (t < 3.0) return { text: 'Decoding the pattern', mode: 'normal' };
+        // Truth I at 4s
         if (t < 4.0) return { text: 'Truth I approaching', mode: 'normal' };
-        if (t < 6.0) return { text: 'Truth I received', mode: 'normal' };
-        if (t < 9.0) return { text: 'Truth II forming', mode: 'normal' };
-        if (t < 10.0) return { text: 'Truth II approaching', mode: 'normal' };
-        if (t < 12.0) return { text: 'Truth II received', mode: 'normal' };
-        if (t < 16.0) return { text: 'Truth III forming', mode: 'normal' };
-        if (t < 18.0) return { text: 'Truth III approaching', mode: 'danger' };
-        if (t < 20.0) return { text: 'Truth III received', mode: 'danger' };
-        if (t < 25.0) return { text: 'Truth IV forming', mode: 'danger' };
-        if (t < 28.0) return { text: 'Truth IV approaching', mode: 'danger' };
-        if (t < 31.0) return { text: 'Truth IV received', mode: 'danger' };
-        if (t < 40.0) return { text: 'Final truth forming', mode: 'danger' };
-        if (t < 52.0) return { text: 'Hold for the final truth', mode: 'critical' };
-        if (t < 70.0) return { text: 'Final truth near', mode: 'critical' };
+        if (t < 6.5) return { text: 'Truth I received', mode: 'normal' };
+        // Truth II at 9s
+        if (t < 9.0) return { text: 'Truth II approaching', mode: 'normal' };
+        if (t < 11.5) return { text: 'Truth II received', mode: 'normal' };
+        // Truth III at 14s
+        if (t < 14.0) return { text: 'Truth III approaching', mode: 'danger' };
+        if (t < 16.5) return { text: 'Truth III received', mode: 'danger' };
+        // Truth IV at 19s
+        if (t < 19.0) return { text: 'Truth IV approaching', mode: 'danger' };
+        if (t < 22.0) return { text: 'Truth IV received', mode: 'danger' };
+        // The wait for the fifth — escalates fast
+        if (t < 26.0) return { text: 'Final truth forming', mode: 'critical' };
+        if (t < 32.0) return { text: 'Hold for the final truth', mode: 'critical' };
+        if (t < 40.0) return { text: 'Do not release', mode: 'critical' };
+        if (t < 50.0) return { text: 'Final truth near', mode: 'critical' };
         return { text: 'Hold...', mode: 'critical' };
       }
 
       function getBgWord(t) {
-        if (t < 7) return 'hold';
-        if (t < 14) return 'stay';
-        if (t < 21) return 'wait';
-        if (t < 28) return 'keep';
-        if (t < 36) return 'more';
+        if (t < 5) return 'hold';
+        if (t < 11) return 'stay';
+        if (t < 17) return 'wait';
+        if (t < 22) return 'keep';
+        if (t < 34) return 'more';
         return 'hold';
       }
 
@@ -1092,10 +1319,10 @@
       }
 
       function maybeFlash(t) {
-        if (t > 14 && !flashTriggered[14]) { flashTriggered[14] = true; triggerFlash('Hold'); }
-        if (t > 24 && !flashTriggered[24]) { flashTriggered[24] = true; triggerFlash('Stay'); }
-        if (t > 42 && !flashTriggered[42]) { flashTriggered[42] = true; triggerFlash('Hold'); }
-        if (t > 58 && !flashTriggered[58]) { flashTriggered[58] = true; triggerFlash('More'); }
+        if (t > 11 && !flashTriggered[11]) { flashTriggered[11] = true; triggerFlash('Hold'); }
+        if (t > 17 && !flashTriggered[17]) { flashTriggered[17] = true; triggerFlash('Stay'); }
+        if (t > 28 && !flashTriggered[28]) { flashTriggered[28] = true; triggerFlash('Hold'); }
+        if (t > 42 && !flashTriggered[42]) { flashTriggered[42] = true; triggerFlash('More'); }
       }
 
       function maybeReceiveTruth(t) {
@@ -1115,6 +1342,21 @@
           el.classList.add('received');
         }, 1200);
         buzz(35);
+
+        showTruthWord(TRUTH_WORDS[index]);
+      }
+
+      function showTruthWord(word) {
+        truthWordText.textContent = word;
+        truthWordLayer.classList.remove('showing');
+        void truthWordLayer.offsetWidth;
+        truthWordLayer.classList.add('showing');
+        // Suppress the background word during the truth reveal so they don't overlap
+        holdStage.classList.add('revealing-truth');
+        setTimeout(function() {
+          truthWordLayer.classList.remove('showing');
+          holdStage.classList.remove('revealing-truth');
+        }, 3700);
       }
 
       function updateBgWord(t) {
@@ -1129,28 +1371,16 @@
         }
       }
 
-      function resetHoldVisuals() {
-        setIntensity(0);
-        setPeaking(0);
-        flashOverlay.classList.remove('flashing');
-        progressFill.style.width = '0%';
-        progressPercent.textContent = '0%';
-        holdMessage.textContent = 'Initialising';
-        holdMessage.classList.remove('danger', 'critical');
-        truthsReceived = 0;
-        truthEls.forEach(function(el) {
-          el.classList.remove('received', 'receiving');
-        });
-        flashTriggered = {};
-        currentBgWord = 'hold';
-        holdBgWord.textContent = 'hold';
-        holdBgWord.classList.remove('fading');
+      function reapplyReceivedTruths() {
+        for (let i = 0; i < truthsReceived; i++) {
+          truthEls[i].classList.add('received');
+        }
       }
 
       function tick() {
         if (!holdActive) return;
-        const elapsed = (performance.now() - holdStart) / 1000;
-        const p = Math.min(94, progressCurve(elapsed));
+        const elapsed = getElapsed();
+        const p = Math.min(95, progressCurve(elapsed));
         progressFill.style.width = p + '%';
         progressPercent.textContent = Math.floor(p) + '%';
 
@@ -1170,31 +1400,30 @@
         updateBgWord(elapsed);
         maybeReceiveTruth(elapsed);
 
-        if (elapsed > 20) setIntensity(3);
-        else if (elapsed > 10) setIntensity(2);
+        if (elapsed > 15) setIntensity(3);
+        else if (elapsed > 8) setIntensity(2);
         else setIntensity(1);
 
-        if (elapsed > 20) setPeaking(3);
-        else if (elapsed > 10) setPeaking(2);
-        else if (elapsed > 4) setPeaking(1);
+        if (elapsed > 15) setPeaking(3);
+        else if (elapsed > 8) setPeaking(2);
+        else if (elapsed > 3) setPeaking(1);
 
         maybeFlash(elapsed);
 
         rafId = requestAnimationFrame(tick);
       }
 
-      function startHold(e) {
+      function startHold(fromButton) {
         if (revealed) return;
-        if (e) e.preventDefault();
         if (holdActive) return;
 
         holdActive = true;
         holdStart = performance.now();
-        holdBtn.classList.add('armed');
+        if (fromButton === 'main') holdBtn.classList.add('armed');
         if (byline) byline.classList.add('hidden');
         buzz(20);
 
-        resetHoldVisuals();
+        reapplyReceivedTruths();
 
         setTimeout(function() {
           if (!holdActive) return;
@@ -1204,18 +1433,18 @@
         rafId = requestAnimationFrame(tick);
       }
 
-      function endHold(e) {
+      function endHold() {
         if (!holdActive) return;
-        if (e && e.cancelable) e.preventDefault();
         holdActive = false;
         if (rafId) cancelAnimationFrame(rafId);
         holdBtn.classList.remove('armed');
 
-        const elapsed = (performance.now() - holdStart) / 1000;
+        const sessionTime = (performance.now() - holdStart) / 1000;
+        elapsedBank += sessionTime;
+        const totalElapsed = elapsedBank;
 
-        // Catch early releases — show enforcement modal
-        if (elapsed < THRESHOLD) {
-          showEnforceModal(elapsed);
+        if (totalElapsed < RELEASE_THRESHOLD) {
+          showEnforceModal(totalElapsed);
           return;
         }
 
@@ -1226,31 +1455,51 @@
       function showEnforceModal(elapsed) {
         buzz([60, 40, 60]);
 
-        // Reset visuals and return to intro behind the modal
-        resetHoldVisuals();
-        holdStage.classList.remove('active');
-        document.body.classList.remove('holding');
-        introStage.classList.add('active');
-        if (byline) byline.classList.remove('hidden');
+        setIntensity(0);
+        setPeaking(0);
+        flashOverlay.classList.remove('flashing');
+        truthWordLayer.classList.remove('showing');
+        holdStage.classList.remove('revealing-truth');
 
-        // Tailored message
-        if (elapsed < 1.0) {
-          enforceTitle.textContent = 'Hold.';
-          enforceBody.textContent = 'This is a press AND hold experience. Tapping is not enough. Press the button and keep your finger down until the truth reveals itself.';
-        } else {
-          enforceTitle.textContent = 'Not yet.';
-          enforceBody.textContent = 'You released before the first truth could arrive. Press and hold again, and this time do not let go.';
+        enforceProgress.textContent = truthsReceived + ' of 5 truths received';
+
+        if (truthsReceived === 0) {
+          if (elapsed < 1.0) {
+            enforceTitle.textContent = 'Hold.';
+            enforceBody.innerHTML = 'This is a press <em>and</em> hold experience. Tapping is not enough. The truths only arrive while you hold.';
+          } else {
+            enforceTitle.textContent = 'Not yet.';
+            enforceBody.innerHTML = 'You released before the first truth could arrive. Your progress is saved.';
+          }
+        } else if (truthsReceived === 1) {
+          enforceTitle.textContent = 'One.';
+          enforceBody.innerHTML = 'You received the first truth. Four more remain. <em>The fifth is essential.</em>';
+        } else if (truthsReceived === 2) {
+          enforceTitle.textContent = 'Two.';
+          enforceBody.innerHTML = 'Halfway is not enough. The system was clear. <em>Do not release before the fifth.</em>';
+        } else if (truthsReceived === 3) {
+          enforceTitle.textContent = 'Almost.';
+          enforceBody.innerHTML = 'Three of five. So close. The next one is forming now. <em>Hold longer this time.</em>';
         }
 
         setTimeout(function() {
           enforceModal.classList.add('active');
           enforceModal.setAttribute('aria-hidden', 'false');
-        }, 300);
+        }, 200);
       }
 
-      function dismissEnforceModal() {
+      function dismissEnforceModalAndResumeHold() {
+        // Called when the user starts press-and-holding the modal's continue button.
+        // We seamlessly close the modal and put them straight into holding mode.
         enforceModal.classList.remove('active');
         enforceModal.setAttribute('aria-hidden', 'true');
+        enforceRetry.classList.add('armed');
+
+        // Hide intro byline corner
+        if (byline) byline.classList.add('hidden');
+
+        // Immediately begin holding from where they left off (elapsedBank preserved)
+        startHold('modal');
       }
 
       function triggerReleaseSequence() {
@@ -1259,6 +1508,8 @@
         setIntensity(0);
         setPeaking(0);
         flashOverlay.classList.remove('flashing');
+        truthWordLayer.classList.remove('showing');
+        holdStage.classList.remove('revealing-truth');
 
         releaseTakeover.classList.add('active');
 
@@ -1277,15 +1528,28 @@
       }
 
       function attachHoldHandlers() {
+        // Main intro button — press and hold
         holdBtn.addEventListener('pointerdown', function(e) {
+          if (e.cancelable) e.preventDefault();
           try { holdBtn.setPointerCapture(e.pointerId); } catch (err) {}
-          startHold(e);
+          if (enforceModal.classList.contains('active')) return;
+          startHold('main');
         });
 
+        // Modal continue button — press and hold seamlessly resumes
+        enforceRetry.addEventListener('pointerdown', function(e) {
+          if (e.cancelable) e.preventDefault();
+          try { enforceRetry.setPointerCapture(e.pointerId); } catch (err) {}
+          dismissEnforceModalAndResumeHold();
+        });
+
+        // Universal release handlers — any pointer up ends the hold
         const releaseEvents = ['pointerup', 'pointercancel'];
         releaseEvents.forEach(function(evtName) {
-          document.addEventListener(evtName, endHold);
-          window.addEventListener(evtName, endHold);
+          document.addEventListener(evtName, function(e) {
+            enforceRetry.classList.remove('armed');
+            endHold();
+          });
         });
 
         document.addEventListener('visibilitychange', function() {
@@ -1294,8 +1558,7 @@
 
         holdBtn.addEventListener('contextmenu', function(e) { e.preventDefault(); });
         holdStage.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-
-        enforceRetry.addEventListener('click', dismissEnforceModal);
+        enforceRetry.addEventListener('contextmenu', function(e) { e.preventDefault(); });
       }
 
       document.addEventListener('touchmove', function(e) {
