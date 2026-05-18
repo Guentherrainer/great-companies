@@ -1001,7 +1001,19 @@
       .truths { margin-top: 32px; gap: 24px; font-size: 13px; }
       .hold-prompt { margin-top: 36px; font-size: 16px; }
 
-      .truth-word__text { font-size: clamp(72px, 18vw, 200px); }
+      .truth-word__text {
+        font-size: clamp(72px, 18vw, 200px);
+      }
+      .truth-word.showing .truth-word__text {
+        animation: truthWordRevealMobile 3.6s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+      }
+      @keyframes truthWordRevealMobile {
+        0% { opacity: 0; filter: blur(16px); transform: scale(0.94); }
+        18% { opacity: 0.9; filter: blur(5px); transform: scale(1); }
+        45% { opacity: 0.85; filter: blur(4px); transform: scale(1.005); }
+        72% { opacity: 0.78; filter: blur(5px); transform: scale(1.01); }
+        100% { opacity: 0; filter: blur(14px); transform: scale(1.02); }
+      }
 
       .enforce-modal { padding: 24px; }
       .enforce-modal__button { width: 100%; padding: 24px 28px; }
